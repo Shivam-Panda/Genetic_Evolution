@@ -11,7 +11,7 @@ let gen_population = 30;
 let lead_population = 5;
 
 let cur_population = [];
-let cur_pop_scores = []
+export let cur_pop_scores = []
 
 let top_5 = null;
 
