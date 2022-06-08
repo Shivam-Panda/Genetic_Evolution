@@ -1,4 +1,5 @@
 import { NeuralNetwork } from './NeuralNetwork';
+import { cur_pop_scores } from './sketch.js';
 
 export class Person {
     x = 500;
@@ -17,6 +18,8 @@ export class Person {
 
     PI = 3.14159265359;
 
+    move_count = 50;
+    cur_count = 0;
 
     calcDistance(cur_x, cur_y, tar_x, tar_y) {
         const x_dif = (tar_x - cur_x) ** 2;
@@ -55,19 +58,38 @@ export class Person {
         this.color = [a, b, c]
 
         n = NeuralNetwork();
+        
+        // Run the simulation
+        while(this.cur_count <= move_count) {
+            this.cur_count++;
+            
+            this.makeMove();
+        }
+        
+        // Add Score to List
+        cur_pop_scores.push(this.calcScore());
     }
 
     constructor(tar_x, tar_y, parent) {
         this.tar_x = tar_x;
         this.tar_y = tar_y;
-
+        
         a = parent.color[0] + Math.floor(Math.random() * 20);
         b = parent.color[1] + Math.floor(Math.random() * 256);
         c = parent.color[2] + Math.floor(Math.random() * 256);
 
         this.color = [a, b, c]
 
-        n = NeuralNetwork(parent.n);
+        n = NeuralNetwork(parent.n);     
+        
+        // Run the simulation
+        while(this.cur_count <= move_count) {
+            this.cur_count++;
+            
+            this.makeMove();
+        }
+        
+        cur_pop_scores.push(this.calcScore());
     }
 
     makeMove() {
