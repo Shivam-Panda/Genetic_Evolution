@@ -1,7 +1,4 @@
-import { NeuralNetwork } from './NeuralNetwork';
-import { cur_pop_scores } from './sketch.js';
-
-export class Person {
+class Parent {
     x = 500;
     y = 500;
 
@@ -21,6 +18,8 @@ export class Person {
     move_count = 50;
     cur_count = 0;
 
+    done = true;
+
     calcDistance(cur_x, cur_y, tar_x, tar_y) {
         const x_dif = (tar_x - cur_x) ** 2;
         const y_dif = (tar_y - cur_y) ** 2;
@@ -39,7 +38,7 @@ export class Person {
             return raw_ang;
         } else if(tar_x < cur_x && tar_y > cur_y) {
             return PI - raw_ang;
-        } else if(tar_x < cur_xx && tar_y < cur_y) {
+        } else if(tar_x < cur_x && tar_y < cur_y) {
             return PI + raw_ang;
         } else {
             return (2 * PI) - raw_ang;
@@ -48,28 +47,26 @@ export class Person {
 
     constructor(tar_x, tar_y) { 
 
+        this.done = true;
+
         this.tar_x = tar_x;
         this.tar_y = tar_y;
 
-        a = Math.floor(Math.random() * 256);
-        b = Math.floor(Math.random() * 256);
-        c = Math.floor(Math.random() * 256);
+        const a = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        const c = Math.floor(Math.random() * 256);
 
         this.color = [a, b, c]
 
-        n = NeuralNetwork();
-        
-        // Run the simulation
-        while(this.cur_count <= move_count) {
-            this.cur_count++;
-            
+        this.n = new NeuralNetwork();
+
+        while(this.cur_count < this.move_count) {
             this.makeMove();
+            this.cur_count++;
         }
-        
-        // Add Score to List
-        cur_pop_scores.push(this.calcScore());
     }
 
+    /*
     constructor(tar_x, tar_y, parent) {
         this.tar_x = tar_x;
         this.tar_y = tar_y;
@@ -88,14 +85,18 @@ export class Person {
             
             this.makeMove();
         }
-        
-        cur_pop_scores.push(this.calcScore());
+    }
+    */
+
+    draw() {
+        fill(this.color[0], this.color[1], this.color[2])
+        rect(this.x, this.y, 50, 50);
     }
 
     makeMove() {
         const dist = this.calcDistance(this.x, this.y, this.tar_x, this.tar_y);
-        const ang = this.calcAngle(this.x, this.y, tar_x, tar_y);
-        const s = n.make_decision(dist, ang);
+        const ang = this.calcAngle(this.x, this.y, this.tar_x, this.tar_y);
+        const s = this.n.make_decision(dist * 0.01, ang);
 
         switch(s) {
             case "LEFT":
