@@ -60,10 +60,7 @@ class Parent {
 
         this.n = new NeuralNetwork();
 
-        while(this.cur_count < this.move_count) {
-            this.makeMove();
-            this.cur_count++;
-        }
+        this.makeMove();
     }
 
     /*
@@ -96,7 +93,7 @@ class Parent {
     makeMove() {
         const dist = this.calcDistance(this.x, this.y, this.tar_x, this.tar_y);
         const ang = this.calcAngle(this.x, this.y, this.tar_x, this.tar_y);
-        const s = this.n.make_decision(dist * 0.01, ang);
+        const s = this.n.make_decision(dist, ang);
 
         switch(s) {
             case "LEFT":
