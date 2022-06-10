@@ -1,4 +1,4 @@
-class Parent {
+class Child {
     x = 1000;
     y = 1000;
 
@@ -49,52 +49,29 @@ class Parent {
         }
     }
 
-    constructor(tar_x, tar_y) { 
-
-        this.done = true;
-
+    constructor(tar_x, tar_y, parent) {
         this.tar_x = tar_x;
         this.tar_y = tar_y;
-
-        const a = Math.floor(Math.random() * 256);
-        const b = Math.floor(Math.random() * 256);
-        const c = Math.floor(Math.random() * 256);
+        
+        let a = parent.color[0] + Math.floor(Math.random() * 20);
+        let b = parent.color[1] + Math.floor(Math.random() * 256);
+        let c = parent.color[2] + Math.floor(Math.random() * 256);
 
         this.color = [a, b, c]
 
-        this.n = new NeuralNetwork();
-
-        while(this.cur_count < this.move_count) {
-            this.makeMove();
+        this.n = new ChildNN(parent.getN());     
+        
+        // Run the simulation
+        while(this.cur_count <= this.move_count) {
             this.cur_count++;
+            
+            this.makeMove();
         }
     }
 
     getN() {
         return this.n;
     }
-
-    /*
-    constructor(tar_x, tar_y, parent) {
-        this.tar_x = tar_x;
-        this.tar_y = tar_y;
-        
-        a = parent.color[0] + Math.floor(Math.random() * 20);
-        b = parent.color[1] + Math.floor(Math.random() * 256);
-        c = parent.color[2] + Math.floor(Math.random() * 256);
-
-        this.color = [a, b, c]
-
-        n = NeuralNetwork(parent.n);     
-        
-        // Run the simulation
-        while(this.cur_count <= move_count) {
-            this.cur_count++;
-            
-            this.makeMove();
-        }
-    }
-    */
 
     draw() {
         fill(this.color[0], this.color[1], this.color[2])

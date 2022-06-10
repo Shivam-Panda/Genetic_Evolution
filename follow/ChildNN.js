@@ -1,25 +1,15 @@
-class NeuralNetwork {
+class ChildNN {
     bias_1 = 0;
     bias_2 = 0;
     weight_1 = 0;
     weight_2 = 0;
-
-    constructor() {
-        this.bias_1 = Math.random() * (2) +(-1);
-        this.bias_2 = Math.random() * (2) +(-1);
-        this.weight_1 = Math.random() * (2) +(-1);
-        this.weight_2 = Math.random() * (2) +(-1);
-    } 
        
-       
-    /*
     constructor(parent) {
         this.bias_1 = parent.bias_1 + (Math.random * (0.1));
         this.weight_1 = parent.weight_1 + (Math.random * (0.1));
         this.bias_2 = parent.bias_2 + (Math.random * (0.1));
         this.weight_2 = parent.weight_2 + (Math.random * (0.1));
     }
-    */
 
     sigmoid(x) {
         const exp = -1 * (x / 300);
