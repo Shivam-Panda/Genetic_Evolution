@@ -22,7 +22,7 @@ class NeuralNetwork {
     */
 
     sigmoid(x) {
-        const exp = -1 * (x / 10);
+        const exp = -1 * (x / 300);
         const den = 1 + Math.pow(2.718, exp);
         return 1 / den;
     }
@@ -31,13 +31,13 @@ class NeuralNetwork {
         const val_1 = (this.weight_1 * angle) + this.bias_1; 
         const val_2 = (this.weight_2 * distance) + this.bias_2;
 
-        const sum = val_1 + val_2;
+        const sum = (val_1 + val_2);
 
-        // console.log(sum);
+        console.log(sum);
 
-        const fin = (Math.tanh(sum));
-
-        console.log(fin);
+        const fin = (this.sigmoid(sum));
+        
+        console.log(this.sigmoid((sum)));
 
         // Change range
         if(fin < 0.25) {

@@ -1,6 +1,6 @@
 class Parent {
-    x = 500;
-    y = 500;
+    x = 1000;
+    y = 1000;
 
     tar_x = 0;
     tar_y = 0;
@@ -15,7 +15,7 @@ class Parent {
 
     PI = 3.14159265359;
 
-    move_count = 50;
+    move_count = 15;
     cur_count = 0;
 
     done = true;
@@ -60,7 +60,10 @@ class Parent {
 
         this.n = new NeuralNetwork();
 
-        this.makeMove();
+        while(this.cur_count < this.move_count) {
+            this.makeMove();
+            this.cur_count++;
+        }
     }
 
     /*
@@ -97,16 +100,16 @@ class Parent {
 
         switch(s) {
             case "LEFT":
-                this.x -= 5;
+                this.x -= 50;
                 break;
             case "RIGHT":
-                this.x += 5;
+                this.x += 50;
                 break;
             case "UP":
-                this.y += 5;
+                this.y += 50;
                 break;
             case "DOWN":
-                this.y -= 5;
+                this.y -= 50;
                 break;
         };
     }
