@@ -49,17 +49,17 @@ class Child {
         }
     }
 
-    constructor(tar_x, tar_y, parent) {
+    constructor(tar_x, tar_y, parent_1, parent_2) {
         this.tar_x = tar_x;
         this.tar_y = tar_y;
         
-        let a = parent.color[0] + Math.floor(Math.random() * 20);
-        let b = parent.color[1] + Math.floor(Math.random() * 256);
-        let c = parent.color[2] + Math.floor(Math.random() * 256);
+        let a = (parent_1.color[0] + parent_2.color[0])/2;
+        let b = (parent_1.color[1] + parent_2.color[1])/2;
+        let c = (parent_1.color[2] + parent_2.color[2])/2;
 
         this.color = [a, b, c]
 
-        this.n = new ChildNN(parent.getN());     
+        this.n = new ChildNN(parent_1.getN(), parent_2.getN());     
         
         // Run the simulation
         while(this.cur_count <= this.move_count) {

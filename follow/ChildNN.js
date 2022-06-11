@@ -4,11 +4,11 @@ class ChildNN {
     weight_1 = 0;
     weight_2 = 0;
        
-    constructor(parent) {
-        this.bias_1 = parent.bias_1 + (Math.random() * (1) +(-0.5));
-        this.weight_1 = parent.weight_2 + (Math.random() * (1) +(-0.5));
-        this.bias_2 = parent.bias_2 + (Math.random() * (1) +(-0.5));
-        this.weight_2 = parent.weight_2 + (Math.random() * (1) +(-0.5));
+    constructor(parent_1, parent_2) {
+        this.bias_1 = ((parent_1.bias_1 + parent_2.bias_1) /2)  + (Math.random() * (0.2) +(-0.1));
+        this.weight_2 = ((parent_1.weight_2 + parent_2.weight_2) /2) + (Math.random() * (0.2) +(-0.1));
+        this.weight_1 = ((parent_1.weight_1 + parent_2.weight_1) /2) + (Math.random() * (0.2) +(-0.1));
+        this.bias_2 = ((parent_1.bias_2 + parent_2.bias_2) /2) + (Math.random() * (0.2) +(-0.1));
     }
 
     sigmoid(x) {
