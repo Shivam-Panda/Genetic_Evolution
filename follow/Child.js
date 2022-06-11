@@ -15,7 +15,7 @@ class Child {
 
     PI = 3.14159265359;
 
-    move_count = 15;
+    move_count = 200;
     cur_count = 0;
 
     done = true;

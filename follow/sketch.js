@@ -5,7 +5,7 @@ let t = 0
 
 let cur_t = 0;
 
-let generation_time = 5;
+let generation_time = 1;
 
 function setup() {
     setInterval(() => {
@@ -19,15 +19,20 @@ function setup() {
     }
 }
 
-const return_top_5 = (gen) => {
+const return_first = (gen) => {
+    for(let i = 0; i < gen.length; i++) {
+        console.log(gen[i].calcScore());
+    }
     let sorted = gen.sort((a, b) => a.calcScore() - b.calcScore());
-    return [sorted[0], sorted[1], sorted[2], sorted[3], sorted[4]];
+    console.log(sorted);
+    console.log(sorted[0])
+    return sorted[0];
 }
 
 const next_gen = () => {
     let copy = gen;
     gen = [];
-    let top_5 = return_top_5(copy);
+    let top_5 = return_first(copy);
     for(let i = 0; i < 5; i++) {
         for(let j = 0; j < 6; j++) {
             let c = new Child(200, 200, top_5[i]);

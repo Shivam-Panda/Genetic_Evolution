@@ -5,10 +5,10 @@ class ChildNN {
     weight_2 = 0;
        
     constructor(parent) {
-        this.bias_1 = parent.bias_1 + (Math.random * (0.1));
-        this.weight_1 = parent.weight_1 + (Math.random * (0.1));
-        this.bias_2 = parent.bias_2 + (Math.random * (0.1));
-        this.weight_2 = parent.weight_2 + (Math.random * (0.1));
+        this.bias_1 = parent.bias_1 + (Math.random() * (1) +(-0.5));
+        this.weight_1 = parent.weight_2 + (Math.random() * (1) +(-0.5));
+        this.bias_2 = parent.bias_2 + (Math.random() * (1) +(-0.5));
+        this.weight_2 = parent.weight_2 + (Math.random() * (1) +(-0.5));
     }
 
     sigmoid(x) {
